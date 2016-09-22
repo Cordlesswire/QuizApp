@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/healthLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@android:color/holo_blue_light"
+    >
+
+    <View android:layout_width="match_parent" android:layout_height="10dp" android:background="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/textArea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Saúde"
+        style="@style/HeaderTextStyle"
+        />
+
+    <TextView
+        android:id="@+id/textQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Honestamente, como está minha saúde neste momento?"
+        />
+    <CheckBox
+        android:id="@+id/checkbox1"
+        android:text="Realizo exames periódicos."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <CheckBox
+        android:id="@+id/checkbox2"
+        android:text="Alimento-me corretamente: dieta balanceada e alimentos saudável em quantidade adequada."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <CheckBox
+        android:id="@+id/checkbox3"
+        android:text="Prático exercícios físicos regularmente."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <CheckBox
+        android:id="@+id/checkbox4"
+        android:text="Sinto-me traquilo, cultivo bons pensamentos, de otimismo, de felicidade, de gratidão (não tenho pensamento de rancor)."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <CheckBox
+        android:id="@+id/checkbox5"
+        android:text="Sinto-me em pleno bem-estar físico, sem dores nas costas, sem incomodo na visão, sem mágoa."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <CheckBox
+        android:id="@+id/checkbox6"
+        android:text="Eu sou uma boa pessoa para as pessoas."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <CheckBox
+        android:id="@+id/checkbox7"
+        android:text="Durmo tranquila e profundamente a noite, sem interrupções como ida por banheiro, meche no celular, etc."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>

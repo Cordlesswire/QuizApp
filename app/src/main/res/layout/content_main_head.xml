@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:tools="http://schemas.android.com/tools"
+       xmlns:android="http://schemas.android.com/apk/res/android"
+       tools:showIn="@layout/activity_activity"
+        >
+    <LinearLayout
+        android:id="@+id/firstLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:gravity="center_vertical"
+            android:text="@string/name_text"
+            android:textColor="@android:color/black"
+            />
+        <EditText
+            android:id="@+id/firstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/editTextBack"
+            android:hint="@string/first_name"
+            android:inputType="textCapWords"
+            android:imeOptions="actionGo"
+            android:textColor="@android:color/black"
+            android:textAlignment="center"
+            />
+    </LinearLayout>
+
+    <!--Ativa o resto do Quiz, somente quando está ativado-->
+    <CheckBox
+        android:id="@+id/checkboxAgree"
+        android:onClick="agreeCheckOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:text="@string/check_agreement"
+        android:textSize="16sp"
+        />
+</merge>

@@ -1,0 +1,15 @@
+<resources xmlns:xliff="http://schemas.android.com/tools">
+    <string name="app_name">QuizApp</string>
+    <string name="obs_quiz">Este quiz é baseado em uma ferramenta coaching chamada Roda da Vida, e
+        está imcompleta, para você compartilhar com seu coach como você está via email.
+    </string>
+    <string name="submit">Como estou?</string>
+    <string name="name_text">Como você prefere ser chamado?</string>
+    <string name="check_agreement">Eu me comprometo a responder honestamente este formulário
+    </string>
+    <string name="first_name">Sou Fulando de Tal</string>
+
+    <string name="order_summary_email_subject">Roda da Vida de <xliff:g id="name" example="Amy">%s</xliff:g></string>
+    <string name="question_self">Honestamente, o quanto eu acho que conheço a mim mesmo? </string>
+    <string name="question_title">Autoconhecimento</string>
+</resources>

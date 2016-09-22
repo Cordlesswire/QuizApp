@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/jobsLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@android:color/holo_orange_dark"
+    >
+
+    <View android:layout_width="match_parent" android:layout_height="10dp" android:background="@android:color/holo_green_dark"/>
+
+    <TextView
+        android:id="@+id/textArea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Trabalho"
+        style="@style/HeaderTextStyle"
+    />
+    <TextView
+        android:id="@+id/textQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Honestamente, como está minha vida profissional neste momento?"
+        />
+    <CheckBox
+        android:id="@+id/checkbox8"
+        android:text="Estou realizado profissionamente."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <CheckBox
+        android:id="@+id/checkbox9"
+        android:text="Estou tendo satisfação de desempenhar minha função."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <CheckBox
+        android:id="@+id/checkbox10"
+        android:text="Eu acordo feliz para trabalhar."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <CheckBox
+        android:id="@+id/checkbox11"
+        android:text="Estou satisfeito com minha remuneração em sustentar as minhas necessidades como indivíduo e como membro de família."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>
