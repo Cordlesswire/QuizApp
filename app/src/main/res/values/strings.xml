@@ -7,9 +7,13 @@
     <string name="name_text">Como você prefere ser chamado?</string>
     <string name="check_agreement">Eu me comprometo a responder honestamente este formulário
     </string>
-    <string name="first_name">Sou Fulando de Tal</string>
+    <string name="first_name">Meu nome</string>
 
     <string name="order_summary_email_subject">Roda da Vida de <xliff:g id="name" example="Amy">%s</xliff:g></string>
     <string name="question_self">Honestamente, o quanto eu acho que conheço a mim mesmo? </string>
     <string name="question_title">Autoconhecimento</string>
+    <string name="edit_error">Vamos lá!</string>
+    <string name="button_improve">Onde melhorar?</string>
+    <string name="title_dialog_self">Autoconhecimento</string>
+    <string name="message_dialog">Questão obrigatória: marque uma alternativa!</string>
 </resources>

@@ -28,7 +28,7 @@
             android:background="@color/editTextBack"
             android:hint="@string/first_name"
             android:inputType="textCapWords"
-            android:imeOptions="actionGo"
+            android:imeOptions="actionDone"
             android:textColor="@android:color/black"
             android:textAlignment="center"
             />

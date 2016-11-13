@@ -1,9 +1,12 @@
 package com.udacity.android.quizapp;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -19,12 +22,12 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final static String TAG = "MainActivity";
+    private final static String TAG = MainActivity.class.getSimpleName();
 
     private EditText mNameText;
 
-    private StringBuffer mMsgWhoAmI; // who am I?
-    private StringBuffer mMsgImprove; // where can I improve?
+    private StringBuffer mMessageWhoAmI; // who am I?
+    private StringBuffer mMessageImprove; // where can I improve?
     // As questão do nome EditView e do RadioButton são obrigatório e não valem pontos; as CheckBox valem pontos
     private int mScore;
 
@@ -33,11 +36,39 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity);
+        //
+        mNameText       = (EditText) findViewById(R.id.firstName);
+        mMessageWhoAmI  = new StringBuffer();
+        mMessageImprove = new StringBuffer();
+        mScore          = 0;
+        //
+        String[] permissions = new String[] {Manifest.permission.READ_CONTACTS};
+        PermissionUtils.validate(this, 0, permissions);
+    }
 
-        mNameText = (EditText) findViewById(R.id.firstName);
-        mMsgWhoAmI  = new StringBuffer();
-        mMsgImprove = new StringBuffer();
-        mScore = 0;
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        for (int result : grantResults) {
+            if (result == PackageManager.PERMISSION_DENIED) {
+                alertAndFinish();
+                return;
+            }
+        }
+    }
+
+
+    private void alertAndFinish() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.app_name).setMessage("Para utilizar este aplicativo, você precisa aceitar as permissões.");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                finish();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 
@@ -48,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout buttonLayout = (LinearLayout) findViewById(R.id.buttonLayout);
 
         CheckBox agreeCheck = (CheckBox) findViewById(R.id.checkboxAgree);
-        boolean isAgree = agreeCheck.isChecked() && validate(mNameText);
+        boolean isAgree     = agreeCheck.isChecked() && validate(mNameText);
         Log.i(TAG, "isAgree: " + isAgree);
         visibility(healthLayout, isAgree);
         visibility(jobsLayout, isAgree);
@@ -59,16 +90,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void sumitOnClick(View view) {
         checkboxMarked();
-        int rg = radioGroupMarked(mMsgWhoAmI);
-        radioGroupMarked(mMsgImprove);
+        int rg = radioGroupMarked(mMessageWhoAmI);
+        radioGroupMarked(mMessageImprove);
 
         String message = null;
         switch (view.getId()) {
             case R.id.submit:
-                message = "Como estou?\n\n\n" + mMsgWhoAmI.toString() + "\n\n\nPontuação: " + mScore;
+                message = "Como estou?\n\n\n" + mMessageWhoAmI.toString() + "\n\n\nPontuação: " + mScore;
                 break;
             case R.id.submitImprove:
-                message = "Em primeira pessoa, como posso ser melhor?\n\n\n" + mMsgImprove.toString() + "\n\n\nPontuação: " + mScore;
+                message = "Em primeira pessoa, como posso ser melhor?\n\n\n" + mMessageImprove.toString() + "\n\n\nPontuação: " + mScore;
                 break;
         }
 
@@ -87,13 +118,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void sendByEmail(String name, String message) {
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:"));
-        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.order_summary_email_subject, name) );
-        intent.putExtra(Intent.EXTRA_TEXT, message);
+        try {
+            Intent intentEmail = new Intent(Intent.ACTION_SENDTO);
+            intentEmail.setData(Uri.parse("mailto:"));
+            intentEmail.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.order_summary_email_subject, name) );
+            intentEmail.putExtra(Intent.EXTRA_TEXT, message);
+//            intentEmail.setType("message/rfc822");
 
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
+            if (intentEmail.resolveActivity(getPackageManager()) != null) {
+//                startActivity(Intent.createChooser(intentEmail, "Choose an Email client:"));
+                startActivity(intentEmail);
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "É necessário que você tenha um previamente instalado e logado para poder enviar e-mail", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -129,12 +166,12 @@ public class MainActivity extends AppCompatActivity {
         checkList.add(checkBox9);
         checkList.add(checkBox10);
         checkList.add(checkBox11);
-        for (CheckBox view : checkList) {
-            if (view.isChecked()) {
-                mMsgWhoAmI.append(view.getText() + " \n");
+        for (CheckBox checkBox : checkList) {
+            if (checkBox.isChecked()) {
+                mMessageWhoAmI.append(checkBox.getText()).append(" \n");
                 mScore += 1;
             } else {
-                mMsgImprove.append(view.getText() + " \n");
+                mMessageImprove.append(checkBox.getText()).append(" \n");
             }
         }
     }
@@ -152,8 +189,8 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "canSend: " + canSend);
         if (canSend == -1) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Autoconhecimento");
-            builder.setMessage("Questão obrigatória: marque uma alternativa!");
+            builder.setTitle(R.string.title_dialog_self);
+            builder.setMessage(R.string.message_dialog);
             builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                 }
@@ -179,12 +216,13 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean validate(EditText editText) {
         if (editText.getText().toString().trim().length() < 1) {
-            editText.setError("Vamos lá!");
+            editText.setError(getString(R.string.edit_error));
             editText.requestFocus();
             return false;
         }
         return true;
     }
+
 
 
 }
