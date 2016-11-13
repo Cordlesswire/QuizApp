@@ -49,6 +49,7 @@
 
 
     <LinearLayout
+        tools:visibility="visible"
         android:visibility="gone"
         android:id="@+id/buttonLayout"
         android:layout_width="match_parent"
@@ -66,7 +67,6 @@
             android:background="@android:color/holo_green_dark"
             android:text="@string/submit"
             android:textColor="@android:color/white"
-            android:layout_gravity="bottom|left"
             />
         <Button
             android:id="@+id/submitImprove"
@@ -75,10 +75,9 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_green_light"
-            android:text="Onde melhorar?"
+            android:text="@string/button_improve"
             android:textSize="18sp"
             android:textColor="@android:color/white"
-            android:layout_gravity="bottom|right"
             />
     </LinearLayout>
 
